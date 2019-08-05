@@ -16,5 +16,10 @@
   "bugs": {
     "url": "https://github.com/ashleyerffmeyer/liri-bot/issues"
   },
-  "homepage": "https://github.com/ashleyerffmeyer/liri-bot#readme"
+  "homepage": "https://github.com/ashleyerffmeyer/liri-bot#readme",
+  "dependencies": {
+    "axios": "^0.19.0",
+    "dotenv": "^8.0.0",
+    "moment": "^2.24.0"
+  }
 }
