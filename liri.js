@@ -1,6 +1,7 @@
 require("dotenv").config();
 
 var keys = require("./keys.js");
+var moment = require('moment');
 
 var axios = require("axios");
 
@@ -10,19 +11,26 @@ var Spotify = require('node-spotify-api');
 
 // node liri.js concert-this <artist/band name here>
 
-/*var bandsURL = "https://rest.bandsintown.com/artists/" + name + "/events?app_id=codingbootcamp";
+var concertThis = function (bandName) {
+    var bandQueryURL = "https://rest.bandsintown.com/artists/" + bandName + "/events?app_id=codingbootcamp";
+    axios.get(bandQueryURL)
+        .then(function (response) {
+            console.log("----------------------------------------------------");
+            console.log("Artist(s): " + response.data[0].lineup);
+            console.log("Venue Name: " + response.data[0].venue.name);
+            console.log("Venue Location: " + response.data[0].venue.city + ", " + response.data[0].venue.region);
+            var concertTime = response.data[0].datetime;
+            var momConcertTime = concertTime.moment().format("MM/DD/YYYY");
+            console.log(momConcertTime);
+            console.log("Event Date: " + momConcertTime);
+            console.log("----------------------------------------------------");
+        })
+        .catch(function (error) {
+            console.log("error");
+        });
+};
 
-axios
-    .get(bandsURL)
-    .then(function (response) {
-
-        console.log(response.data);
-    })
-    .catch(function (error) {
-        console.log("error");
-    }); **/
-
-// node liri.js spotify-this-song <song name here>
+// Functions for node liri.js spotify-this-song <song name here>
 
 var getArtistName = function (artist) {
     return artist.name;
@@ -37,10 +45,7 @@ var spotifyThisSong = function (songName) {
             return console.log('Error occurred: ' + err);
         }
 
-        console.log(data);
-
         var songs = data.tracks.items;
-        console.log(songs);
         for (var i = 0; i < songs.length; i++) {
             console.log(i);
             console.log("Artist(s): " + songs[i].artists.map(getArtistName));
@@ -53,12 +58,12 @@ var spotifyThisSong = function (songName) {
     });
 };
 
-// node liri.js movie-this '<movie name here>'
+// Functions for node liri.js movie-this '<movie name here>'
 
 var movieThis = function (movieName) {
 
     // Store all of the arguments in an array
-    //var nodeArgs = process.argv;
+    var nodeArgs = process.argv;
 
     // Create an empty variable for holding the movie name
     //var movieName = "";
@@ -66,32 +71,31 @@ var movieThis = function (movieName) {
     // Loop through all the words in the node argument
     // And do a little for-loop magic to handle the inclusion of "+"s
 
-    /** for (var i = 2; i < nodeArgs.length; i++) {
- 
-         if (i > 2 && i < nodeArgs.length) {
-             movieName = movieName + "+" + nodeArgs[i];
-         } else {
-             movieName += nodeArgs[i];
- 
-         }
- } */
+    /**for (var i = 2; i < nodeArgs.length; i++) {
+    
+            if (i > 2 && i < nodeArgs.length) {
+                movieName = movieName + "+" + nodeArgs[i];
+            } else {
+                movieName += nodeArgs[i];
+    
+            }
+    }**/
 
     // Then run a request with axios to the OMDB API with the movie specified
     var omdbQueryUrl = "http://www.omdbapi.com/?t=" + movieName + "&y=&plot=short&apikey=trilogy";
 
-    // This line is just to help us debug against the actual URL.
-    console.log(omdbQueryUrl);
-
     axios.get(omdbQueryUrl).then(
         function (response) {
+            console.log("----------------------------------------------------");
             console.log("Movie Title: " + response.data.Title);
             console.log("Release Year: " + response.data.Year);
             console.log("IMDB Rating: " + response.data.imdbRating);
             console.log("Rotten Tomatoes Rating: " + response.data.Metascore);
-            console.log("Production Country: " + response.data.Country);
+            console.log("Country of Origin: " + response.data.Country);
             console.log("Movie Language: " + response.data.Language);
             console.log("Movie Plot: " + response.data.Plot);
             console.log("Featured Actors: " + response.data.Actors);
+            console.log("----------------------------------------------------");
         })
         .catch(function (error) {
             if (error.response) {
@@ -122,18 +126,27 @@ var movieThis = function (movieName) {
 
 var pick = function (caseData, functionData) {
     switch (caseData) {
-        case 'movie-this':
-            movieThis(functionData);
+        case 'concert-this':
+            concertThis(functionData);
             break;
 
         case 'spotify-this-song':
             spotifyThisSong(functionData);
             break;
 
+        case 'movie-this':
+            movieThis(functionData);
+            break;
+
+        case 'do-what-it-says':
+            doWhatItSays(functionData);
+            break;
+
         default:
             console.log('LIRI does not know this');
     }
 }
+
 var runThis = function (argOne, argTwo) {
     pick(argOne, argTwo);
 }
