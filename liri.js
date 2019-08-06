@@ -21,10 +21,8 @@ var concertThis = function (bandName) {
             console.log("Artist(s): " + response.data[0].lineup);
             console.log("Venue Name: " + response.data[0].venue.name);
             console.log("Venue Location: " + response.data[0].venue.city + ", " + response.data[0].venue.region);
-            var concertTime = response.data[0].datetime;
-            var momConcertTime = concertTime.moment().format("MM/DD/YYYY");
-            console.log(momConcertTime);
-            console.log("Event Date: " + momConcertTime);
+            var concertDate = moment(response.data[0].datetime).format("MM/DD/YYYY");
+            console.log("Event Date: " + concertDate);
             console.log("----------------------------------------------------");
         })
         .catch(function (error) {
