@@ -18,6 +18,8 @@ var concertThis = function (bandName) {
     axios.get(bandQueryURL)
         .then(function (response) {
             console.log("----------------------------------------------------");
+            console.log("See below for info about " + bandName);
+            console.log("----------------------------------------------------");
             console.log("Artist(s): " + response.data[0].lineup);
             console.log("Venue Name: " + response.data[0].venue.name);
             console.log("Venue Location: " + response.data[0].venue.city + ", " + response.data[0].venue.region);
@@ -46,6 +48,9 @@ var spotifyThisSong = function (songName) {
         }
 
         var songs = data.tracks.items;
+        console.log("----------------------------------------------------");
+        console.log("See below for " + songName + " search results.");
+        console.log("----------------------------------------------------");
         for (var i = 0; i < songs.length; i++) {
             console.log(i);
             console.log("Artist(s): " + songs[i].artists.map(getArtistName));
@@ -86,6 +91,8 @@ var movieThis = function (movieName) {
 
     axios.get(omdbQueryUrl).then(
         function (response) {
+            console.log("----------------------------------------------------");
+            console.log("See below for info about " + movieName);
             console.log("----------------------------------------------------");
             console.log("Movie Title: " + response.data.Title);
             console.log("Release Year: " + response.data.Year);
