@@ -1,13 +1,15 @@
+// All requirements
 require("dotenv").config();
 
 var keys = require("./keys.js");
+
 var moment = require('moment');
 
 var axios = require("axios");
 
 var Spotify = require('node-spotify-api');
 
-
+var fs = require("fs");
 
 // node liri.js concert-this <artist/band name here>
 
@@ -120,7 +122,23 @@ var movieThis = function (movieName) {
 };
 
 
-// node liri.js do-what-it-says
+// Function for node liri.js do-what-it-says
+
+var doWhatItSays = function () {
+
+    fs.readFile('random.txt', 'utf8', function (err, data) {
+        if (err) throw err;
+
+        var dataArr = data.split(',');
+
+        if (dataArr.length == 2) {
+            pick(dataArr[0], dataArr[1]);
+        }
+        else if (dataArr.length == 1) {
+            pick(dataArr[0]);
+        };
+    });
+};
 
 // Functions
 
@@ -139,7 +157,7 @@ var pick = function (caseData, functionData) {
             break;
 
         case 'do-what-it-says':
-            doWhatItSays(functionData);
+            doWhatItSays();
             break;
 
         default:
