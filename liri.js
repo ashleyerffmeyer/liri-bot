@@ -1,21 +1,33 @@
-// All requirements
+// All required node modules needed to run functions below
+
+// Sets environmental variables to global 'process.env' object in node
 require("dotenv").config();
 
+// Calls API keys for Spotify
 var keys = require("./keys.js");
 
+// Moment module
 var moment = require('moment');
 
+// Axios module
 var axios = require("axios");
 
+// Spotify module
 var Spotify = require('node-spotify-api');
 
+// Reads/writes files
 var fs = require("fs");
 
-// node liri.js concert-this <artist/band name here>
+// Function to run "node liri.js concert-this <artist/band name here>" command
 
+// Creates concertThis function that passes through bandName
 var concertThis = function (bandName) {
+    // Variable building the query URL for Bands In Town
     var bandQueryURL = "https://rest.bandsintown.com/artists/" + bandName + "/events?app_id=codingbootcamp";
+
+    // Axios get request
     axios.get(bandQueryURL)
+        // Then get a response and do the following actions
         .then(function (response) {
             console.log("----------------------------------------------------");
             console.log("See below for info about " + bandName);
@@ -27,21 +39,34 @@ var concertThis = function (bandName) {
             console.log("Event Date: " + concertDate);
             console.log("----------------------------------------------------");
         })
+
+        // console.log "error" if there is a error
         .catch(function (error) {
             console.log("error");
         });
 };
 
-// Functions for node liri.js spotify-this-song <song name here>
+// Functions to run "node liri.js spotify-this-song <song name here>" command
 
+// Function to get the name of the artist
 var getArtistName = function (artist) {
     return artist.name;
 }
 
+// Creates spotifyThisSong function that passes through songName
 var spotifyThisSong = function (songName) {
 
+    // If a song name is not provided, populate the command with 'The Sign' by Ace of Base
+    if (!songName) {
+        songName = 'The Sign';
+    }
+    // Otherwise, use the song name provided by user
+    songName = songName;
+
+    // Creates variable spotify to create Spotify keys
     var spotify = new Spotify(keys.spotify);
 
+    // Uses node spotify api package call
     spotify.search({ type: 'track', query: songName }, function (err, data) {
         if (err) {
             return console.log('Error occurred: ' + err);
@@ -63,28 +88,14 @@ var spotifyThisSong = function (songName) {
     });
 };
 
-// Functions for node liri.js movie-this '<movie name here>'
+// Function for node liri.js movie-this '<movie name here>'
 
 var movieThis = function (movieName) {
 
-    // Store all of the arguments in an array
-    var nodeArgs = process.argv;
-
-    // Create an empty variable for holding the movie name
-    //var movieName = "";
-
-    // Loop through all the words in the node argument
-    // And do a little for-loop magic to handle the inclusion of "+"s
-
-    /**for (var i = 2; i < nodeArgs.length; i++) {
-    
-            if (i > 2 && i < nodeArgs.length) {
-                movieName = movieName + "+" + nodeArgs[i];
-            } else {
-                movieName += nodeArgs[i];
-    
-            }
-    }**/
+    if (!movieName) {
+        movieName = 'Mr Nobody';
+    }
+    movieName = movieName;
 
     // Then run a request with axios to the OMDB API with the movie specified
     var omdbQueryUrl = "http://www.omdbapi.com/?t=" + movieName + "&y=&plot=short&apikey=trilogy";
