@@ -22,11 +22,13 @@ var fs = require("fs");
 
 // Creates concertThis function that passes through bandName
 var concertThis = function (bandName) {
+
     // Variable building the query URL for Bands In Town
     var bandQueryURL = "https://rest.bandsintown.com/artists/" + bandName + "/events?app_id=codingbootcamp";
 
     // Axios get request
     axios.get(bandQueryURL)
+
         // Then get a response and do the following actions
         .then(function (response) {
             console.log("----------------------------------------------------");
@@ -46,7 +48,7 @@ var concertThis = function (bandName) {
         });
 };
 
-// Functions to run "node liri.js spotify-this-song <song name here>" command
+// Functions to run "node liri.js spotify-this-song '<song name here>' " command
 
 // Function to get the name of the artist
 var getArtistName = function (artist) {
@@ -66,12 +68,15 @@ var spotifyThisSong = function (songName) {
     // Creates variable spotify to create Spotify keys
     var spotify = new Spotify(keys.spotify);
 
-    // Uses node spotify api package call
+    // Use node spotify api package call
     spotify.search({ type: 'track', query: songName }, function (err, data) {
+
+        // If there is an error return the following info
         if (err) {
             return console.log('Error occurred: ' + err);
         }
 
+        // Otherwise, console.log the following search results
         var songs = data.tracks.items;
         console.log("----------------------------------------------------");
         console.log("See below for " + songName + " search results.");
@@ -88,20 +93,27 @@ var spotifyThisSong = function (songName) {
     });
 };
 
-// Function for node liri.js movie-this '<movie name here>'
+// Function to run  "node liri.js movie-this '<movie name here>' " command
 
+// Creates movieThis function that passes through movieName
 var movieThis = function (movieName) {
 
+    // If a movie name is not provided, populate the command with the movie "Mr. Nobody"
     if (!movieName) {
         movieName = 'Mr Nobody';
     }
+
+    // Otherwise, use the movie name provided by user
     movieName = movieName;
 
-    // Then run a request with axios to the OMDB API with the movie specified
+    // Variable building the query URL for OMBD
     var omdbQueryUrl = "http://www.omdbapi.com/?t=" + movieName + "&y=&plot=short&apikey=trilogy";
 
-    axios.get(omdbQueryUrl).then(
-        function (response) {
+    // Axios get request
+    axios.get(omdbQueryUrl)
+
+        // Then get a response and do the following actions
+        .then(function (response) {
             console.log("----------------------------------------------------");
             console.log("See below for info about " + movieName);
             console.log("----------------------------------------------------");
@@ -115,6 +127,8 @@ var movieThis = function (movieName) {
             console.log("Featured Actors: " + response.data.Actors);
             console.log("----------------------------------------------------");
         })
+
+        // console.log the following if there is a error
         .catch(function (error) {
             if (error.response) {
                 // The request was made and the server responded with a status code
@@ -138,26 +152,33 @@ var movieThis = function (movieName) {
 };
 
 
-// Function for node liri.js do-what-it-says
+// Function to run "node liri.js do-what-it-says" command
 
+// Creates doWhatItSays function
 var doWhatItSays = function () {
 
+    // Read random.text file with readFile method
     fs.readFile('random.txt', 'utf8', function (err, data) {
+
+        // If there's an error, throw err
         if (err) throw err;
 
+        // Creates variable that splits data at comma
         var dataArr = data.split(',');
 
+        // If the data array length is 2, pick both indices in data array
         if (dataArr.length == 2) {
             pick(dataArr[0], dataArr[1]);
         }
+
+        // Otherwise, if the data array lenght is 1, pick just one index in the data array
         else if (dataArr.length == 1) {
             pick(dataArr[0]);
         };
     });
 };
 
-// Functions
-
+// Creates pick function to swtich between user input cases 
 var pick = function (caseData, functionData) {
     switch (caseData) {
         case 'concert-this':
@@ -181,8 +202,10 @@ var pick = function (caseData, functionData) {
     }
 }
 
+// Creates runThis function that runs pick function with 2 arguments
 var runThis = function (argOne, argTwo) {
     pick(argOne, argTwo);
 }
 
+// Runs runThis function with arguments input by user
 runThis(process.argv[2], process.argv[3]);
