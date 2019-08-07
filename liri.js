@@ -3,6 +3,9 @@
 // Sets environmental variables to global 'process.env' object in node
 require("dotenv").config();
 
+// Chalk module to console.log in color 
+var chalk = require('chalk');
+
 // Calls API keys for Spotify
 var keys = require("./keys.js");
 
@@ -30,15 +33,15 @@ var concertThis = function (bandName) {
 
         // Then get a response and do the following actions
         .then(function (response) {
-            console.log("----------------------------------------------------");
-            console.log("See below for info about " + bandName);
-            console.log("----------------------------------------------------");
-            console.log("Artist(s): " + response.data[0].lineup);
-            console.log("Venue Name: " + response.data[0].venue.name);
-            console.log("Venue Location: " + response.data[0].venue.city + ", " + response.data[0].venue.region);
+            console.log(chalk.magenta("----------------------------------------------------"));
+            console.log(chalk.green("See below for info about " + bandName));
+            console.log(chalk.magenta("----------------------------------------------------"));
+            console.log(chalk.cyan("Artist(s): ") + chalk.yellow(response.data[0].lineup));
+            console.log(chalk.cyan("Venue Name: ") + chalk.yellow(response.data[0].venue.name));
+            console.log(chalk.cyan("Venue Location: ") + chalk.yellow(response.data[0].venue.city + ", " + response.data[0].venue.region));
             var concertDate = moment(response.data[0].datetime).format("MM/DD/YYYY");
-            console.log("Event Date: " + concertDate);
-            console.log("----------------------------------------------------");
+            console.log(chalk.cyan("Event Date: ") + chalk.yellow(concertDate));
+            console.log(chalk.magenta("----------------------------------------------------"));
         })
 
         // console.log "error" if there is a error
@@ -77,16 +80,16 @@ var spotifyThisSong = function (songName) {
 
         // Otherwise, console.log the following search results
         var songs = data.tracks.items;
-        console.log("----------------------------------------------------");
-        console.log("See below for " + songName + " search results.");
-        console.log("----------------------------------------------------");
+        console.log(chalk.magenta("----------------------------------------------------"));
+        console.log(chalk.green("See below for " + songName + " search results:"));
+        console.log(chalk.magenta("----------------------------------------------------"));
         for (var i = 0; i < songs.length; i++) {
-            console.log(i);
-            console.log("Artist(s): " + songs[i].artists.map(getArtistName));
-            console.log("Song Name: " + songs[i].name);
-            console.log("Preview Link: " + songs[i].href);
-            console.log("Album Name: " + songs[i].album.name);
-            console.log("----------------------------------------------------");
+            console.log(chalk.white(i));
+            console.log(chalk.cyan("Artist(s): ") + chalk.yellow(songs[i].artists.map(getArtistName)));
+            console.log(chalk.cyan("Song Name: ") + chalk.yellow(songs[i].name));
+            console.log(chalk.cyan("Preview Link: ") + chalk.yellow(songs[i].href));
+            console.log(chalk.cyan("Album Name: ") + chalk.yellow(songs[i].album.name));
+            console.log(chalk.magenta("----------------------------------------------------"));
 
         }
     });
@@ -112,18 +115,18 @@ var movieThis = function (movieName) {
 
         // Then get a response and do the following actions
         .then(function (response) {
-            console.log("----------------------------------------------------");
-            console.log("See below for info about " + movieName);
-            console.log("----------------------------------------------------");
-            console.log("Movie Title: " + response.data.Title);
-            console.log("Release Year: " + response.data.Year);
-            console.log("IMDB Rating: " + response.data.imdbRating);
-            console.log("Rotten Tomatoes Rating: " + response.data.Metascore);
-            console.log("Country of Origin: " + response.data.Country);
-            console.log("Movie Language: " + response.data.Language);
-            console.log("Movie Plot: " + response.data.Plot);
-            console.log("Featured Actors: " + response.data.Actors);
-            console.log("----------------------------------------------------");
+            console.log(chalk.magenta("----------------------------------------------------"));
+            console.log(chalk.green("See below for info about " + movieName + ":"));
+            console.log(chalk.magenta("----------------------------------------------------"));
+            console.log(chalk.cyan("Movie Title: ") + chalk.yellow(response.data.Title));
+            console.log(chalk.cyan("Release Year: ") + chalk.yellow(response.data.Year));
+            console.log(chalk.cyan("IMDB Rating: ") + chalk.yellow(response.data.imdbRating));
+            console.log(chalk.cyan("Rotten Tomatoes Rating: ") + chalk.yellow(response.data.Metascore));
+            console.log(chalk.cyan("Country of Origin: ") + chalk.yellow(response.data.Country));
+            console.log(chalk.cyan("Movie Language: ") + chalk.yellow(response.data.Language));
+            console.log(chalk.cyan("Movie Plot: ") + chalk.yellow(response.data.Plot));
+            console.log(chalk.cyan("Featured Actors: ") + chalk.yellow(response.data.Actors));
+            console.log(chalk.magenta("----------------------------------------------------"));
         })
 
         // console.log the following if there is a error
