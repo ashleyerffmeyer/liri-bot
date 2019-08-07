@@ -19,7 +19,6 @@ var Spotify = require('node-spotify-api');
 var fs = require("fs");
 
 // Function to run "node liri.js concert-this <artist/band name here>" command
-
 // Creates concertThis function that passes through bandName
 var concertThis = function (bandName) {
 
@@ -49,7 +48,6 @@ var concertThis = function (bandName) {
 };
 
 // Functions to run "node liri.js spotify-this-song '<song name here>' " command
-
 // Function to get the name of the artist
 var getArtistName = function (artist) {
     return artist.name;
@@ -62,6 +60,7 @@ var spotifyThisSong = function (songName) {
     if (!songName) {
         songName = 'The Sign';
     }
+
     // Otherwise, use the song name provided by user
     songName = songName;
 
@@ -94,7 +93,6 @@ var spotifyThisSong = function (songName) {
 };
 
 // Function to run  "node liri.js movie-this '<movie name here>' " command
-
 // Creates movieThis function that passes through movieName
 var movieThis = function (movieName) {
 
@@ -131,6 +129,7 @@ var movieThis = function (movieName) {
         // console.log the following if there is a error
         .catch(function (error) {
             if (error.response) {
+
                 // The request was made and the server responded with a status code
                 // that falls out of the range of 2xx
                 console.log("---------------Data---------------");
@@ -140,10 +139,12 @@ var movieThis = function (movieName) {
                 console.log("---------------Status---------------");
                 console.log(error.response.headers);
             } else if (error.request) {
+
                 // The request was made but no response was received
                 // `error.request` is an object that comes back with details pertaining to the error that occurred.
                 console.log(error.request);
             } else {
+
                 // Something happened in setting up the request that triggered an Error
                 console.log("Error", error.message);
             }
@@ -153,7 +154,6 @@ var movieThis = function (movieName) {
 
 
 // Function to run "node liri.js do-what-it-says" command
-
 // Creates doWhatItSays function
 var doWhatItSays = function () {
 
