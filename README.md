@@ -62,6 +62,8 @@ The Bands In Town API is accessed using the `axios` package and renders the foll
 * Venue location
 * Date of the Event (formatted as "MM/DD/YYYY" with moment)
 
+Example output from concert-this command:
+
 ![Image of Bands In Town Terminal Output](https://github.com/ashleyerffmeyer/liri-bot/blob/master/readme-images/bands-in-town.png)
 
 ### Spotify
@@ -77,6 +79,8 @@ The Spotify API will return search results for the song with the following infor
 * The album that the song is from
 
 If the user does not provide a song for Argument2, the program will default to "The Sign" by Ace of Base.
+
+Example output from spotify-this-song command:
 
 ![Image of Spotify Terminal Output](https://github.com/ashleyerffmeyer/liri-bot/blob/master/readme-images/spotify.png)
 
@@ -98,6 +102,8 @@ The OMDB API is accessed using the `axios` package and renders the following inf
 
 If the user does not provide a movie for Argument2, the program will default to 'Mr. Nobody.'
 
+Example output from movie-this command:
+
 ![Image of OMDB Terminal Output](https://github.com/ashleyerffmeyer/liri-bot/blob/master/readme-images/omdb.png)
 
 ### Read Commands from File
@@ -111,5 +117,7 @@ NOTE: `argument2` is not needed for this command
 `random.txt` contains the following information: 
 
     spotify-this-song,"I Want it That Way" 
+
+Example output from do-what-it-says command:
 
 ![Image of Read Commands from File Terminal Output](https://github.com/ashleyerffmeyer/liri-bot/blob/master/readme-images/file.png)
