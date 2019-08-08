@@ -32,7 +32,7 @@ Ashley Erffmeyer, with major support from KU's Coding Boot Camp staff members:
 
 In order to run this command line node app, first install node.js and npm. To install the app, clone this repository and use 'npm install' to gather dependencies specified in the package.json file (Node-Spotify-API, Axios, Moment, DotEnv, Chalk). 
 
-You will need to create a .env file that will contain the necessary api keys. Your .env file should look like this:
+You will need to create a .env file that will contain the necessary Spotify API keys. Your .env file should look like this:
       
     # Spotify API keys
 
@@ -96,7 +96,7 @@ If the user does not provide a movie for Argument2, the program will default to 
 
 ### Read Commands from file
 
-Use the following command to run what is specified in `random.txt` file:
+Use the following command to take the text inside of the `random.txt` file and then the text to call one of LIRI's commands:
 
     $ node liri.js do-what-it-says
 
@@ -105,8 +105,3 @@ NOTE: `argument2` is not needed for this command
 `random.txt` contains the following information: 
 
     spotify-this-song,"I Want it That Way" 
-
-
-
-
-
