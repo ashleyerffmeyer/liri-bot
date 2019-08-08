@@ -1,6 +1,6 @@
-# liri-bot
+# LIRI BOT 
 
-Language Interpretation and Recognition Interface (LIRI) is a command line node app that takes in user parameters and provides the user with data from Spotify, OMDB, and Bands In Town APIs.  
+Language Interpretation and Recognition Interface (LIRI) Bot is a command line node app that takes in user parameters and provides the user with data from Spotify, OMDB, and Bands In Town APIs.  
 
 [Link to LIRI!](https://ashleyerffmeyer.github.io/liri-bot/) 
 
@@ -62,6 +62,8 @@ The Bands In Town API is accessed using the `axios` package and renders the foll
 * Venue location
 * Date of the Event (formatted as "MM/DD/YYYY" with moment)
 
+![Image of Bands In Town Terminal Output](https://github.com/ashleyerffmeyer/liri-bot/blob/master/readme-images/bands-in-town.png)
+
 ### Spotify
 
 Use the following command to run the Spotify API:
@@ -75,6 +77,8 @@ The Spotify API will return search results for the song with the following infor
 * The album that the song is from
 
 If the user does not provide a song for Argument2, the program will default to "The Sign" by Ace of Base.
+
+![Image of Spotify Terminal Output](https://github.com/ashleyerffmeyer/liri-bot/blob/master/readme-images/spotify.png)
 
 ### OMDB
 
@@ -94,7 +98,9 @@ The OMDB API is accessed using the `axios` package and renders the following inf
 
 If the user does not provide a movie for Argument2, the program will default to 'Mr. Nobody.'
 
-### Read Commands from file
+![Image of OMDB Terminal Output](https://github.com/ashleyerffmeyer/liri-bot/blob/master/readme-images/omdb.png)
+
+### Read Commands from File
 
 Use the following command to take the text inside of the `random.txt` file and then use the text to call one of LIRI's commands:
 
@@ -105,3 +111,5 @@ NOTE: `argument2` is not needed for this command
 `random.txt` contains the following information: 
 
     spotify-this-song,"I Want it That Way" 
+
+![Image of Read Commands from File Terminal Output](https://github.com/ashleyerffmeyer/liri-bot/blob/master/readme-images/file.png)
