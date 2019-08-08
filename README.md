@@ -34,10 +34,10 @@ In order to run this command line node app, first install node.js and npm. To in
 
 You will need to create a .env file that will contain the necessary api keys. Your .env file should look like this:
       
-      # Spotify API keys
+    # Spotify API keys
 
-      SPOTIFY_ID=your-spotify-id
-      SPOTIFY_SECRET=your-spotify-secret
+    SPOTIFY_ID=your-spotify-id
+    SPOTIFY_SECRET=your-spotify-secret
 
 Acquire your own access keys; the OMDB key is provided.
 
@@ -45,25 +45,42 @@ Acquire your own access keys; the OMDB key is provided.
 
 The LIRI node app runs from the command line with the following command structure:
 
-      $ node liri.js argument1 argument2
+    $ node liri.js argument1 argument2
 
 ## Instructions
 
-### Bands In Town API
+### Bands In Town
 
-      $ node liri.js concert-this '<artist/band name here>'
+    $ node liri.js concert-this '<artist/band name here>'
 
-### Spotify API
+The Bands In Town API is accessed using the `axios` package and renders the following information about each concert event to the terminal:
 
-      $ node liri.js spotify-this-song '<song name here>'
+* Name of venue
+* Venue location
+* Date of the Event (formatted as "MM/DD/YYYY" with moment)
 
-### OMDB API
+### Spotify
 
-      $ node liri.js movie-this '<movie name here>'
+    $ node liri.js spotify-this-song '<song name here>'
 
-### readFile Method
+### OMDB
 
-      $ node liri.js do-what-it-says
+     node liri.js movie-this '<movie name here>'
+
+The OMDB API is accessed using the `axios` package and renders the following information about the movie to the terminal:
+
+* Title of the movie
+* Year the movie came out
+* IMDB Rating of the movie
+* Rotten Tomatoes Rating of the movie
+* Country where the movie was produced
+* Language of the movie
+* Plot of the movie
+* Actors in the movie
+
+### Read Commands from file
+
+    $ node liri.js do-what-it-says
 
 
 
