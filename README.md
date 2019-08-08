@@ -96,7 +96,7 @@ If the user does not provide a movie for Argument2, the program will default to 
 
 ### Read Commands from file
 
-Use the following command to take the text inside of the `random.txt` file and then the text to call one of LIRI's commands:
+Use the following command to take the text inside of the `random.txt` file and then use the text to call one of LIRI's commands:
 
     $ node liri.js do-what-it-says
 
