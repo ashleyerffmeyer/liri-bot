@@ -47,28 +47,42 @@ The LIRI node app runs from the command line with the following command structur
 
     $ node liri.js argument1 argument2
 
+NOTE: DON'T FORGET TO PUT ARGUMENT2 IN QUOTES
+
 ## Instructions
 
 ### Bands In Town
 
+Use the following command to run the Bands In Town API:
+
     $ node liri.js concert-this '<artist/band name here>'
 
-The Bands In Town API is accessed using the `axios` package and renders the following information about each concert event to the terminal:
-
+The Bands In Town API is accessed using the `axios` package and renders the following information about the artist/band to the terminal:
 * Name of venue
 * Venue location
 * Date of the Event (formatted as "MM/DD/YYYY" with moment)
 
 ### Spotify
 
+Use the following command to run the Spotify API:
+
     $ node liri.js spotify-this-song '<song name here>'
+
+The Spotify API will return search results for the song with the following information:
+* Artist(s)
+* The song's name
+* A preview link of the song from Spotify
+* The album that the song is from
+
+If the user does not provide a song for Argument2, the program will default to "The Sign" by Ace of Base.
 
 ### OMDB
 
-     node liri.js movie-this '<movie name here>'
+Use the following command to run the OMDB API:
+
+     $ node liri.js movie-this '<movie name here>'
 
 The OMDB API is accessed using the `axios` package and renders the following information about the movie to the terminal:
-
 * Title of the movie
 * Year the movie came out
 * IMDB Rating of the movie
@@ -78,9 +92,21 @@ The OMDB API is accessed using the `axios` package and renders the following inf
 * Plot of the movie
 * Actors in the movie
 
+If the user does not provide a movie for Argument2, the program will default to 'Mr. Nobody.'
+
 ### Read Commands from file
 
+Use the following command to run what is specified in `random.txt` file:
+
     $ node liri.js do-what-it-says
+
+NOTE: `argument2` is not needed for this command
+
+`random.txt` contains the following information: 
+
+    spotify-this-song,"I Want it That Way" 
+
+
 
 
 
