@@ -21,7 +21,7 @@ var Spotify = require('node-spotify-api');
 // Reads/writes files
 var fs = require("fs");
 
-// Function to run "node liri.js concert-this <artist/band name here>" command
+// Function to run "node liri.js concert-this '<artist/band name here>' " command
 // Creates concertThis function that passes through bandName
 var concertThis = function (bandName) {
 
@@ -34,7 +34,7 @@ var concertThis = function (bandName) {
         // Then get a response and do the following actions
         .then(function (response) {
             console.log(chalk.magenta("----------------------------------------------------"));
-            console.log(chalk.green("See below for info about " + bandName));
+            console.log(chalk.green("See below for info about " + bandName + ":"));
             console.log(chalk.magenta("----------------------------------------------------"));
             console.log(chalk.cyan("Artist(s): ") + chalk.yellow(response.data[0].lineup));
             console.log(chalk.cyan("Venue Name: ") + chalk.yellow(response.data[0].venue.name));

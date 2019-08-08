@@ -26,8 +26,19 @@ Ashley Erffmeyer, with major support from KU's Coding Boot Camp staff members:
 
    * [DotEnv](https://www.npmjs.com/package/dotenv)
 
+   * [Chalk](https://www.npmjs.com/package/chalk)
+
 ## Prerequisites & Installations
 
+In order to run this command line node app, first install node.js and npm. To install the app, clone this repository and use 'npm install' to gather dependencies specified in the package.json file (Node-Spotify-API, Axios, Moment, DotEnv, Chalk). 
+
+You will need to create a .env file that will contain the necessary api keys. Your .env file should look like this:
+      # Spotify API keys
+
+      SPOTIFY_ID=your-spotify-id
+      SPOTIFY_SECRET=your-spotify-secret
+
+Acquire your own access keys; the OMDB is provided.
 
 ## Application Overview
 
