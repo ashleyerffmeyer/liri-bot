@@ -1,6 +1,6 @@
 # liri-bot
 
-LIRI (Language Interpretation and Recognition Interface) is a command line node app that takes in user parameters and gives the user back data.  
+Language Interpretation and Recognition Interface (LIRI) is a command line node app that takes in user parameters and provides the user with data from Spotify, OMDB, and Bands In Town APIs.  
 
 [Link to LIRI!](https://ashleyerffmeyer.github.io/liri-bot/) 
 
@@ -33,13 +33,37 @@ Ashley Erffmeyer, with major support from KU's Coding Boot Camp staff members:
 In order to run this command line node app, first install node.js and npm. To install the app, clone this repository and use 'npm install' to gather dependencies specified in the package.json file (Node-Spotify-API, Axios, Moment, DotEnv, Chalk). 
 
 You will need to create a .env file that will contain the necessary api keys. Your .env file should look like this:
+      
       # Spotify API keys
 
       SPOTIFY_ID=your-spotify-id
       SPOTIFY_SECRET=your-spotify-secret
 
-Acquire your own access keys; the OMDB is provided.
+Acquire your own access keys; the OMDB key is provided.
 
 ## Application Overview
 
+The LIRI node app runs from the command line with the following command structure:
+
+      $ node liri.js argument1 argument2
+
 ## Instructions
+
+### Bands In Town API
+
+      $ node liri.js concert-this '<artist/band name here>'
+
+### Spotify API
+
+      $ node liri.js spotify-this-song '<song name here>'
+
+### OMDB API
+
+      $ node liri.js movie-this '<movie name here>'
+
+### readFile Method
+
+      $ node liri.js do-what-it-says
+
+
+
