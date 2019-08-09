@@ -2,7 +2,7 @@
 
 Language Interpretation and Recognition Interface (LIRI) Bot is a command line node app that takes in user parameters and provides the user with data from Spotify, OMDB, and Bands In Town APIs.  
 
-[Link to LIRI!](https://ashleyerffmeyer.github.io/liri-bot/) 
+[Link to LIRI Demo!](https://drive.google.com/file/d/1nID5S69a3vKTDUP62cAKwYX5xzXw7PW2/view?usp=sharing) 
 
 ## Authors
 Ashley Erffmeyer, with major support from KU's Coding Boot Camp staff members:
