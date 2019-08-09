@@ -115,13 +115,14 @@ var movieThis = function (movieName) {
 
         // Then get a response and do the following actions
         .then(function (response) {
+
             console.log(chalk.magenta("----------------------------------------------------"));
             console.log(chalk.green("See below for info about " + movieName + ":"));
             console.log(chalk.magenta("----------------------------------------------------"));
             console.log(chalk.cyan("Movie Title: ") + chalk.yellow(response.data.Title));
             console.log(chalk.cyan("Release Year: ") + chalk.yellow(response.data.Year));
-            console.log(chalk.cyan("IMDB Rating: ") + chalk.yellow(response.data.imdbRating));
-            console.log(chalk.cyan("Rotten Tomatoes Rating: ") + chalk.yellow(response.data.Metascore));
+            console.log(chalk.cyan("IMDB Rating: ") + chalk.yellow(response.data.Ratings[0].Value));
+            console.log(chalk.cyan("Rotten Tomatoes Rating: ") + chalk.yellow(response.data.Ratings[1].Value));
             console.log(chalk.cyan("Country of Origin: ") + chalk.yellow(response.data.Country));
             console.log(chalk.cyan("Movie Language: ") + chalk.yellow(response.data.Language));
             console.log(chalk.cyan("Movie Plot: ") + chalk.yellow(response.data.Plot));
